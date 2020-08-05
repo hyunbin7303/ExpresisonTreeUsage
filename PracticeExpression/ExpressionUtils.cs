@@ -9,6 +9,16 @@ namespace PracticeExpression
     public static class ExpressionUtils
     {
         public static List<Employee> allEmployee = new List<Employee>();
+
+        private static List<Employee> UserDataSeed()
+        {
+            return new List<Employee>
+            {
+                new Employee{ Name = "1", FirstName = "Kevin", LastName = "Garnett"},
+                new Employee{ Name = "2", FirstName = "Stephen", LastName = "Curry"},
+                new Employee{ Name = "3", FirstName = "Kevin", LastName = "Durant"}
+            };                
+        }                     
         public static void DataFeed()
         {
             Employee emp1 = new Employee() { Name = "Kevin", birthofDate = new DateTime(2019, 5, 10) };
