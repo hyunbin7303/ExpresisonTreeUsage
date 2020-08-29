@@ -38,7 +38,26 @@ namespace PracticeExpression
             ExpressionUtils.testing(ExpressionUtils.allEmployee);
 
 
+            //Create the expression parameters
+            ParameterExpression num1 = Expression.Parameter(typeof(int), "num1");
+            ParameterExpression num2 = Expression.Parameter(typeof(int), "num2");
 
+            //Create the expression parameters
+            ParameterExpression[] parameters = new ParameterExpression[] { num1, num2 };
+
+            //Create the expression body
+            BinaryExpression body = Expression.Add(num1, num2);
+
+            Expression<Func<int, int, int>> expression = Expression.Lambda<Func<int, int, int>>(body, parameters);
+            Func<int, int, int> compiledExpr = expression.Compile();
+            int result = compiledExpr(20, 30);
+            int result2 = compiledExpr(40, 50);
+            Console.WriteLine(result + "- " + result2);
+
+            // a Query expression is compiled to expression trees or to delegates,
+            //depending on the type that is applied to query result.
+        
+        
         }
     }
 }

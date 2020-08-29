@@ -24,7 +24,6 @@ namespace PracticeExpression
             var eResults = expression.Compile();
         }
 
-
         public static void TestingIfThen(string strTest)
         {
             var TestCondition = Expression.Constant(strTest == "Kevin");
@@ -65,5 +64,66 @@ namespace PracticeExpression
             return Expression.Condition(condition, trueClause, falseClause);
         }
 
+        public static void Testisng2()
+        {
+            //Create the expression parameters 
+            ParameterExpression num1 = Expression.Parameter(typeof(int), "num1"); 
+            ParameterExpression num2 = Expression.Parameter(typeof(int), "num2"); 
+            //ParameterExpression num3 = Expression.Parameter(typeof(int), "num3");
+
+            //Create the expression parameters 
+            ParameterExpression[] parameters = new ParameterExpression[] { num1, num2 }; 
+            //Create the expression body 
+            BinaryExpression body = Expression.Add(num1, num2);
+            //Create the expression 
+            Expression<Func<int, int, int>> expression = Expression.Lambda<Func<int, int, int>>(body, parameters); 
+            // Compile the expression 
+            Func<int, int, int> compiledExpression = expression.Compile(); 
+            // Execute the expression 
+            int result = compiledExpression(3, 4); //return 7
+        }
+
+        public static void Testing3()
+        {
+            ParameterExpression pe = Expression.Parameter(typeof(Employee), "e");
+
+            MemberExpression me = Expression.Property(pe, "Age");
+
+            ConstantExpression constant = Expression.Constant(18, typeof(int));
+
+            Expression<Func<Employee, bool>> isTeenAgerExpr = s => s.Age > 12 && s.Age < 20;
+
+            Expression.Lambda<Func<Employee, bool>>(
+                Expression.AndAlso(
+                    Expression.GreaterThan(Expression.Property(pe, "Age"), Expression.Constant(12, typeof(int))),
+                    Expression.LessThan(Expression.Property(pe, "Age"), Expression.Constant(20, typeof(int)))),
+                        new[] { pe });
+        }
+
+
+        public static double CalculateSlope(double x1, double y1, double x2, double y2)
+        {
+
+            ParameterExpression paramX1 = Expression.Parameter(typeof(double));
+            ParameterExpression paramY1 = Expression.Parameter(typeof(double));
+            ParameterExpression paramX2 = Expression.Parameter(typeof(double));
+            ParameterExpression paramY2 = Expression.Parameter(typeof(double));
+
+            BinaryExpression ySub = Expression.Subtract(paramY2, paramY1);
+            BinaryExpression xSub = Expression.Subtract(paramX2, paramX1);
+            BinaryExpression div = Expression.Divide(ySub, xSub);
+
+            Expression<Func<double, double, double, double, double>> slopeCalculate =
+              Expression.Lambda<Func<double, double, double, double, double>>(div, paramY2, paramY1, paramX2, paramX1);
+
+            return slopeCalculate.Compile()(y2, y1, x2, x1);
+        }
+
+
+        public static decimal userCosts(Employee e1, Employee e2)
+        {
+            ParameterExpression orderEx1 = Expression.Parameter(typeof(Employee), "e1");
+            ParameterExpression orderEx2 = Expression.
+        }
     }
 }
