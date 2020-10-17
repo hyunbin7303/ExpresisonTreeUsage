@@ -34,6 +34,8 @@ namespace PracticeExpression
         static void Main(string[] args)
         {
 
+            ExprFundamental.Testing2();
+
             ExpressionUtils.DataFeed();
             ExpressionUtils.testing(ExpressionUtils.allEmployee);
 

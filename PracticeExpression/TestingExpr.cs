@@ -7,7 +7,6 @@ using System.Text;
 //https://tyrrrz.me/blog/expression-trees
 //https://www.codementor.io/@juliandambrosio/how-to-use-expression-trees-to-build-dynamic-queries-c-xyk1l2l82
 
-
 namespace PracticeExpression
 {
     public class TestingExpr
@@ -120,10 +119,11 @@ namespace PracticeExpression
         }
 
 
-        public static decimal userCosts(Employee e1, Employee e2)
-        {
-            ParameterExpression orderEx1 = Expression.Parameter(typeof(Employee), "e1");
-            ParameterExpression orderEx2 = Expression.
-        }
+        //public static decimal userCosts(Employee e1, Employee e2)
+        //{
+        //    ParameterExpression orderEx1 = Expression.Parameter(typeof(Employee), "e1");
+        //    //ParameterExpression orderEx2 = Expression.
+        //    return 0.0f;
+        //}
     }
 }

@@ -32,6 +32,8 @@ namespace PracticeExpression
             allEmployee.Add(emp4);
             allEmployee.Add(emp5);
         }
+
+
         public static Action<TEntity, TProperty> CreateSetter<TEntity, TProperty>(string name) where TEntity : class
         {
             PropertyInfo propertyInfo = typeof(TEntity).GetProperty(name);
